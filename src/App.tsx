@@ -26,11 +26,22 @@ const initialData = {
 const App: React.FC = () => {
   const [data, setData] = useState<FieldData>(initialData);
 
+  const calculateHerds = (field: Field) => {
+    // loop through field
+    // loop through the row
+    // for each cell
+    // if cow
+    // if adjacent cow (use row index and cell index as x, y coordinates)
+    // start to build herd details
+    // repeat process for adjacecnt cow updating herd details
+    // repeat as lon as there are adjacent cows (maybe neeed recursive function here!)
+  };
+
   const generateField = () => {
     const newField: Field = [];
 
     for (let i = 0; i < 5; i++) {
-      let row: number[] = [];
+      const row: number[] = [];
 
       for (let i = 0; i < 5; i++) {
         row.push(Math.random() < 0.5 ? 0 : 1);
@@ -38,7 +49,9 @@ const App: React.FC = () => {
       newField.push(row);
     }
 
-    setData({ field: newField, cows: 0, herds: 0 });
+    const cows = newField.flat().reduce((acc, cow) => (cow ? acc + 1 : acc), 0);
+
+    setData({ field: newField, cows, herds: 0 });
   };
 
   return (
@@ -61,19 +74,19 @@ const PageWrapper = styled.div`
 `;
 
 const GenerateFieldButton = styled.button`
+  color: #fff;
   width: 200px;
   height: 2rem;
   font-weight: 600;
-  background: #cecccc;
-  border: none;
-  border-radius: 10px;
+  background: #1890ff;
+  border: 1px solid #1890ff;
+  border-radius: 2px;
   cursor: pointer;
-  box-shadow: 1px 1px rgba(0, 0, 0, 12%);
+  box-shadow: 0 2px #0000000b;
   &:hover {
-    background: #7b7b7b;
-    color: #fff;
+    background: #40a9ff;
   }
-  transition: all 0.25s ease-in-out;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 `;
 
 export { App };

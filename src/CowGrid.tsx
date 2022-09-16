@@ -7,8 +7,8 @@ const CowGrid: React.FC<FieldData> = ({ field, cows, herds }: FieldData) => {
   return (
     <>
       <CowGridWrapper>
-        {field.flat().map((cow) => (
-          <GridCell>{cow ? '"Mooh!"' : ""}</GridCell>
+        {field.flat().map((cow, index) => (
+          <GridCell key={index}>{cow ? '"Mooh!"' : ""}</GridCell>
         ))}
       </CowGridWrapper>
       <div>
@@ -38,7 +38,7 @@ const CowGridWrapper = styled.div`
 const GridCell = styled.div`
   background: #6fd684;
   box-shadow: 1px 1px rgba(0, 0, 0, 12%);
-  border-radius: 5px;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
